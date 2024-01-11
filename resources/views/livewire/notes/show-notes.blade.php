@@ -6,13 +6,13 @@ new class extends Component {
     public function with(): array
     {
         return [
-            'notes' => Auth::user()->notes()->orderBy('send_date', 'asc')->get(),
+            'notes' => \Illuminate\Support\Facades\Auth::user()->notes()->orderBy('send_date', 'asc')->get(),
     ];
     }
 
-    public function  delete($noteId){
+    public function  delete($noteId): void{
 
-        $note = Auth::user()->notes()->where('id', $noteId)->first();
+        $note = \Illuminate\Support\Facades\Auth::user()->notes()->where('id', $noteId)->first();
 
         if($note){
             $this->authorize('delete',$note);
